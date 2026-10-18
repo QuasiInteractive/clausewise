@@ -1,6 +1,6 @@
 {"q": "Can my landlord come into the house without telling me?", "targets": ["sec.192", "sec.193", "sec.195", "sec.200", "sec.202", "/entry-to-the-property"]}
 {"q": "The hot water is broken, who has to pay to fix it?", "targets": ["sec.214", "sec.218", "sec.219", "/emergency-repairs"]}
-{"q": "How often can the rent go up?", "targets": ["sec.91", "sec.93", "/rent-increases"]}
+{"q": "How often can the rent go up?", "targets": ["sec.91", "sec.93", "/rent-increases", "/rental-law-changes"]}
 {"q": "Can my landlord keep my bond for carpet cleaning?", "targets": ["/fair-wear-and-tear", "/vacating-a-property", "/special-terms", "sec.188", "/bond-refund"]}
 {"q": "Can I have a dog in my rental?", "targets": ["sec.184B", "sec.184D", "sec.184E", "sec.184F", "/renting-with-pets"]}
 {"q": "The owner is selling the house, do I have to move out?", "targets": ["sec.286", "sec.198", "/when-a-property-is-for-sale"]}

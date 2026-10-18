@@ -14,7 +14,28 @@ def main() -> None:
     search.add_argument("--all-scopes", action="store_true", help="include rooming etc.")
     ask = sub.add_parser("ask", help="answer a question from the rules, with citations")
     ask.add_argument("question")
+    check = sub.add_parser("check", help="check a lease PDF clause by clause")
+    check.add_argument("pdf")
     args = parser.parse_args()
+
+    if args.command == "check":
+        from pathlib import Path
+
+        from clausewise.answer import DISCLAIMER
+        from clausewise.lease.check import check_lease
+
+        report = check_lease(Path(args.pdf).read_bytes())
+        marks = {"ok": "OK   ", "check": "CHECK", "likely_unlawful": "ISSUE",
+                 "not_covered": "  ?  "}
+        for f in report.rule_findings:
+            print(f"[{marks[f.verdict]}] {f.title}: {f.explanation}")
+            for label, link in f.citations:
+                print(f"          {label}  {link}")
+        for f in report.clause_findings:
+            print(f"\n[{marks[f.verdict]}] \"{f.clause}\"\n          {f.reason}")
+            for hit in f.sources:
+                print(f"          {hit.heading_path.split(' > ')[-1]}  {hit.link}")
+        print(f"\n{report.problems} likely problem(s). {DISCLAIMER}")
 
     if args.command == "ask":
         from clausewise.answer import DISCLAIMER, answer
