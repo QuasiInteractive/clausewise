@@ -18,6 +18,7 @@ class Chunk:
     heading_path: str
     body: str
     anchor: str | None = None
+    scope: str = "general"  # see clausewise.ingest.scope
 
 
 def chunk_markdown(text: str, max_chars: int = 1800) -> list[Chunk]:

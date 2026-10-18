@@ -16,10 +16,15 @@ CREATE TABLE IF NOT EXISTS chunks (
     heading_path  TEXT NOT NULL,
     anchor        TEXT,                 -- deep link fragment, when the source has one
     body          TEXT NOT NULL,
+    scope         TEXT NOT NULL DEFAULT 'general', -- residential | rooming | general | other | admin
     embedding     vector(384),
     tsv           tsvector GENERATED ALWAYS AS (
                       to_tsvector('english', heading_path || ' ' || body)) STORED
 );
 
+-- databases created before the scope column existed
+ALTER TABLE chunks ADD COLUMN IF NOT EXISTS scope TEXT NOT NULL DEFAULT 'general';
+
+CREATE INDEX IF NOT EXISTS chunks_scope_idx ON chunks (scope);
 CREATE INDEX IF NOT EXISTS chunks_tsv_idx ON chunks USING GIN (tsv);
 CREATE INDEX IF NOT EXISTS chunks_embedding_idx ON chunks USING hnsw (embedding vector_cosine_ops);

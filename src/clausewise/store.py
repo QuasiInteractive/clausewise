@@ -35,10 +35,11 @@ def replace_source(
         ).fetchone()[0]
         with conn.cursor() as cur:
             cur.executemany(
-                "INSERT INTO chunks (source_id, heading_path, anchor, body, embedding)"
-                " VALUES (%s, %s, %s, %s, %s)",
+                "INSERT INTO chunks (source_id, heading_path, anchor, body, scope, embedding)"
+                " VALUES (%s, %s, %s, %s, %s, %s)",
                 [
-                    (source_id, c.heading_path, c.anchor, c.body, np.array(e, dtype=np.float32))
+                    (source_id, c.heading_path, c.anchor, c.body, c.scope,
+                     np.array(e, dtype=np.float32))
                     for c, e in zip(chunks, embeddings, strict=True)
                 ],
             )
