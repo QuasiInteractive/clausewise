@@ -33,12 +33,31 @@ say it. It never tells you what a tribunal will decide.
 Python 3.13 · FastAPI · Postgres 17 + pgvector · fastembed (local embeddings and re-ranking,
 no API cost) · Claude · pypdf · pytest · GitHub Actions.
 
+## Results
+
+| Eval | Result |
+|---|---|
+| Retrieval: 48 renter questions, a correct rule in the top 5 | **92%** (keyword only 67%, vector only 88%, hybrid without re-rank 90%) |
+| Lease check: planted unlawful special terms caught | **6 / 6** |
+| Lease check: harmless terms wrongly flagged | **0 / 6** |
+| Bond rule (plain code, s 112/146) | **3 / 3** |
+
+The retrieval eval runs in CI on every push against a committed snapshot of the corpus. The
+lease eval calls Claude, so it runs on manual dispatch. These are small sets; they grow with
+every bug found.
+
 ## Running it
 
 ```bash
 docker compose up -d          # Postgres + pgvector on localhost:5433
 cp .env.example .env          # add your ANTHROPIC_API_KEY
 uv sync
+uv run clausewise snapshot-load   # or `clausewise ingest` to fetch live from the sources
+uv run uvicorn clausewise.api:app --port 8077   # the site at http://localhost:8077
+
+uv run clausewise ask "How often can the rent go up?"
+uv run clausewise check eval/leases/bad.pdf
+uv run clausewise eval-search
 uv run pytest
 ```
 
