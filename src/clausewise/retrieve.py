@@ -12,7 +12,7 @@ import numpy as np
 import psycopg
 from fastembed.rerank.cross_encoder import TextCrossEncoder
 
-from clausewise.embed import embed_query
+from clausewise.embed import MODEL_LOCK, embed_query
 
 RERANK_MODEL = "Xenova/ms-marco-MiniLM-L-6-v2"
 RRF_K = 60  # the usual constant; dampens the gap between rank 1 and rank 2
@@ -89,6 +89,7 @@ def search(
     if rerank_model is None:
         return [Hit(*rows[i], score=fused[i]) for i in pool[:k]]
     texts = [f"{rows[i][4]}\n{rows[i][5]}" for i in pool]
-    scores = list(_reranker(rerank_model).rerank(query, texts))
+    with MODEL_LOCK:
+        scores = list(_reranker(rerank_model).rerank(query, texts, batch_size=8))
     ranked = sorted(zip(pool, scores, strict=True), key=lambda p: p[1], reverse=True)[:k]
     return [Hit(*rows[i], score=float(s)) for i, s in ranked]
