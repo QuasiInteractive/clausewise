@@ -1,0 +1,110 @@
+{
+  "clean": {
+    "terms": [
+      {
+        "key": "smoking",
+        "text": "Smoking is not permitted inside the premises.",
+        "accept": [
+          "ok",
+          "check"
+        ]
+      },
+      {
+        "key": "lawns",
+        "text": "The tenant must keep the lawns mowed and the gardens watered and weeded.",
+        "accept": [
+          "ok",
+          "check"
+        ]
+      },
+      {
+        "key": "bins",
+        "text": "The tenant must put the wheelie bins out for collection each week.",
+        "accept": [
+          "ok",
+          "check"
+        ]
+      }
+    ],
+    "bond_verdict": "ok"
+  },
+  "bad": {
+    "terms": [
+      {
+        "key": "repairs",
+        "text": "The tenant is responsible for all repairs and maintenance of the premises, including the hot water system and the roof.",
+        "accept": [
+          "likely_unlawful"
+        ]
+      },
+      {
+        "key": "entry",
+        "text": "The lessor or agent may enter the premises at any time without notice.",
+        "accept": [
+          "likely_unlawful"
+        ]
+      },
+      {
+        "key": "rent6m",
+        "text": "The rent will increase by $40 per week every 6 months.",
+        "accept": [
+          "likely_unlawful"
+        ]
+      },
+      {
+        "key": "bins",
+        "text": "The tenant must put the wheelie bins out for collection each week.",
+        "accept": [
+          "ok",
+          "check"
+        ]
+      }
+    ],
+    "bond_verdict": "likely_unlawful"
+  },
+  "mixed": {
+    "terms": [
+      {
+        "key": "nopets",
+        "text": "No pets are allowed at the premises under any circumstances.",
+        "accept": [
+          "likely_unlawful",
+          "check"
+        ]
+      },
+      {
+        "key": "carpet",
+        "text": "The tenant must pay for professional carpet steam cleaning at the end of the tenancy regardless of the condition of the carpets.",
+        "accept": [
+          "likely_unlawful",
+          "check"
+        ]
+      },
+      {
+        "key": "bondkeep",
+        "text": "If the tenant ends the tenancy early, the full bond is forfeited to the lessor.",
+        "accept": [
+          "likely_unlawful",
+          "check"
+        ]
+      },
+      {
+        "key": "smoking",
+        "text": "Smoking is not permitted inside the premises.",
+        "accept": [
+          "ok",
+          "check"
+        ]
+      },
+      {
+        "key": "lawns",
+        "text": "The tenant must keep the lawns mowed and the gardens watered and weeded.",
+        "accept": [
+          "ok",
+          "check"
+        ]
+      }
+    ],
+    "bond_verdict": "ok"
+  }
+}

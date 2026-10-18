@@ -11,3 +11,10 @@ Both attributions must appear in the app footer and on every exported report.
 
 Still to check before fetching: robots.txt for both sites, and that the Act page used is the
 current in-force reprint (Queensland rental law changed in 2024 and 2025).
+
+## Bundled files
+
+- `data/forms/form18a.pdf`: RTA General tenancy agreement (Form 18a), v23 Sep25, from
+  rta.qld.gov.au. CC BY 3.0 AU, © The State of Queensland Residential Tenancies Authority.
+  Used to read real leases and to build the sample leases in `eval/leases/`, which are filled
+  with made-up names and planted special terms.
