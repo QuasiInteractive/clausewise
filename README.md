@@ -1,5 +1,7 @@
 # Clausewise
 
+**Live:** https://clausewise.bluewater-bad1ebb8.australiaeast.azurecontainerapps.io (scales to zero, so the first visit can take ~30 seconds to wake)
+
 Upload a Queensland residential lease (PDF). Clausewise reads it clause by clause, checks each
 clause against the official tenancy rules, and gives back a plain-English report with a link to
 the exact rule behind every finding. You can then ask follow-up questions about your own lease.
@@ -30,8 +32,9 @@ say it. It never tells you what a tribunal will decide.
 
 ## Stack
 
-Python 3.13 · FastAPI · Postgres 17 + pgvector · fastembed (local embeddings and re-ranking,
-no API cost) · Claude · pypdf · pytest · GitHub Actions.
+Python 3.13 · FastAPI · Postgres 17 + pgvector (Supabase, Sydney) · fastembed (local embeddings
+and re-ranking, no API cost) · Claude · pypdf · pytest · GitHub Actions · Docker on Azure
+Container Apps (Bicep, scale to zero).
 
 ## Results
 
