@@ -1,6 +1,6 @@
 # Clausewise
 
-**Live:** https://clausewise.bluewater-bad1ebb8.australiaeast.azurecontainerapps.io (scales to zero, so the first visit can take ~30 seconds to wake)
+**Live:** https://clausewise.quasi-interactive.com (scales to zero, so the first visit can take ~30 seconds to wake)
 
 Upload a Queensland residential lease (PDF). Clausewise reads it clause by clause, checks each
 clause against the official tenancy rules, and gives back a plain-English report with a link to
