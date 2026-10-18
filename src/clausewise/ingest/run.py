@@ -1,6 +1,7 @@
 """Fetch the official sources, parse them, embed them and load them into Postgres."""
 
 import time
+from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from clausewise.config import settings
 from clausewise.embed import embed_passages
 from clausewise.ingest.qld_act import act_meta, parse_act
 from clausewise.ingest.rta import page_title, parse_rta_page
+from clausewise.ingest.scope import rta_scope
 from clausewise.store import connect, replace_source
 
 USER_AGENT = "Clausewise/0.1 (portfolio research; https://quasi-interactive.com/nick)"
@@ -91,7 +93,8 @@ def ingest_rta_guidance(delay_s: float = 1.0) -> None:
             slug = url.removeprefix("https://www.rta.qld.gov.au/").strip("/").replace("/", "__")
             (raw / f"{slug}.html").write_text(resp.text, encoding="utf-8")
 
-            chunks = parse_rta_page(resp.text, settings.chunk_max_chars)
+            scope = rta_scope(url)
+            chunks = [replace(c, scope=scope) for c in parse_rta_page(resp.text, settings.chunk_max_chars)]
             if not chunks:  # index pages that only list their children
                 skipped += 1
                 continue

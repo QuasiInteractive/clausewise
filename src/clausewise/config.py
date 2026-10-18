@@ -1,3 +1,4 @@
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -6,6 +7,8 @@ class Settings(BaseSettings):
 
     database_url: str = "postgresql://clausewise:clausewise@localhost:5433/clausewise"
     answer_model: str = "claude-sonnet-5-5"
+    # the standard name, without the CLAUSEWISE_ prefix, so .env works like everywhere else
+    anthropic_api_key: SecretStr | None = Field(default=None, validation_alias="ANTHROPIC_API_KEY")
     embedding_model: str = "BAAI/bge-small-en-v1.5"
 
     # Chunk size in characters. Legal sections vary a lot; long ones are split on paragraph

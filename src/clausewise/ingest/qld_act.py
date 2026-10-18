@@ -15,6 +15,7 @@ from dataclasses import dataclass
 from bs4 import BeautifulSoup, Tag
 
 from clausewise.ingest.chunk import Chunk, split_body
+from clausewise.ingest.scope import act_scope
 
 # heading level by the element's class
 _LEVELS = {
@@ -47,8 +48,9 @@ def parse_act(html: str, max_chars: int = 1800) -> list[Chunk]:
         if section and lines:
             heading_path = " > ".join([t for _, t in path] + [section[0]])
             body = "\n".join(lines).strip()
+            scope = act_scope(heading_path)
             for piece in split_body(body, max_chars):
-                chunks.append(Chunk(heading_path, piece, section[1]))
+                chunks.append(Chunk(heading_path, piece, section[1], scope))
         lines.clear()
 
     for el in content.find_all(True):
