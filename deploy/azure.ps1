@@ -24,6 +24,11 @@ function Read-EnvValue([string]$File, [string]$Name) {
 $anthropicKey = Read-EnvValue ".env" "ANTHROPIC_API_KEY"
 $databaseUrl = Read-EnvValue ".env.prod" "CLAUSEWISE_DATABASE_URL"
 
+# one-time per subscription: turn on Azure Container Apps (takes a minute or two the first time)
+Write-Host "Making sure Container Apps is enabled on this subscription..."
+az provider register --namespace Microsoft.App --wait
+
+Write-Host "Deploying (about 3-5 minutes)..."
 az group create --name $ResourceGroup --location $Location --output none
 $url = az deployment group create `
     --resource-group $ResourceGroup `
