@@ -14,3 +14,5 @@ wheels/
 data/raw/
 .pytest_cache/
 .ruff_cache/
+.env.*
+!.env.example

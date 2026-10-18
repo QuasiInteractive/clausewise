@@ -50,6 +50,11 @@ class Question(BaseModel):
     question: str = Field(min_length=3, max_length=500)
 
 
+@app.get("/healthz")
+def healthz() -> dict:
+    return {"ok": True}
+
+
 @app.get("/")
 def index() -> FileResponse:
     return FileResponse(STATIC / "index.html")
