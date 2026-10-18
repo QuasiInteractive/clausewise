@@ -1,0 +1,56 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      lease_eval:
+        description: "Also run the lease eval (calls Claude, costs a few cents)"
+        type: boolean
+        default: false
+
+env:
+  CLAUSEWISE_DATABASE_URL: postgresql://clausewise:clausewise@localhost:5432/clausewise
+  FASTEMBED_CACHE_PATH: ${{ github.workspace }}/.fastembed
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: clausewise
+          POSTGRES_PASSWORD: clausewise
+          POSTGRES_DB: clausewise
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U clausewise" --health-interval 5s
+          --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - run: uv run ruff check .
+      - run: uv run pytest -q
+
+      - uses: actions/cache@v4
+        with:
+          path: .fastembed
+          key: fastembed-bge-small-minilm-v1
+
+      - name: Create schema
+        run: psql "$CLAUSEWISE_DATABASE_URL" -f db/schema.sql
+      - name: Load corpus snapshot
+        run: uv run clausewise snapshot-load
+      - name: Retrieval eval (48 renter questions, must find a correct rule in the top 5 for 85%)
+        run: uv run clausewise eval-search --min-recall 0.85
+
+      - name: Lease eval (planted unlawful terms)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.lease_eval }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          uv run python eval/make_leases.py
+          uv run python eval/run_lease_eval.py

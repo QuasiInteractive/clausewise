@@ -1,6 +1,6 @@
 {"q": "Can my landlord come into the house without telling me?", "targets": ["sec.192", "sec.193", "sec.195", "sec.200", "sec.202", "/entry-to-the-property"]}
 {"q": "The hot water is broken, who has to pay to fix it?", "targets": ["sec.214", "sec.218", "sec.219", "/emergency-repairs"]}
-{"q": "How often can the rent go up?", "targets": ["sec.91", "sec.93", "/rent-increases", "/rental-law-changes"]}
+{"q": "How often can the rent go up?", "targets": ["sec.91", "sec.93", "/rental-law-changes"]}
 {"q": "Can my landlord keep my bond for carpet cleaning?", "targets": ["/fair-wear-and-tear", "/vacating-a-property", "/special-terms", "sec.188", "/bond-refund"]}
 {"q": "Can I have a dog in my rental?", "targets": ["sec.184B", "sec.184D", "sec.184E", "sec.184F", "/renting-with-pets"]}
 {"q": "The owner is selling the house, do I have to move out?", "targets": ["sec.286", "sec.198", "/when-a-property-is-for-sale"]}
@@ -9,4 +9,40 @@
 {"q": "Do I have to pay for the water I use?", "targets": ["sec.166", "sec.166A", "/charging-for-utilities", "/rent-and-other-bills"]}
 {"q": "What happens if I need to break my lease early?", "targets": ["/ending-a-tenancy-agreement", "sec.308"]}
 {"q": "The landlord won't fix the leaking tap, what can I do?", "targets": ["sec.185", "sec.221", "/routine-repairs", "/repair-orders"]}
-{"q": "How much notice does the landlord have to give me to leave at the end of my lease?", "targets": ["sec.291", "sec.329", "/ending-a-tenancy"]}
+{"q": "How much notice does the landlord have to give me to leave at the end of my lease?", "targets": ["sec.291", "/ending-a-tenancy-agreement"]}
+{"q": "Does the landlord have to give me a condition report when I move in?", "targets": ["sec.65", "/entry-condition-report"]}
+{"q": "What do I do with the exit condition report when I move out?", "targets": ["sec.66", "/exit-condition-report"]}
+{"q": "I got a notice to remedy breach for late rent, what does it mean?", "targets": ["sec.280", "sec.281", "/tenant-breaches-the-agreement", "/non-payment-of-rent"]}
+{"q": "The landlord broke the lease agreement, what can I do?", "targets": ["sec.301", "sec.309", "/property-managerowner-breaches-the-agreement"]}
+{"q": "Can the landlord kick me out because I asked for repairs?", "targets": ["sec.246A", "/retaliatory-action"]}
+{"q": "Can I sublet a room to a friend?", "targets": ["sec.238", "sec.239", "sec.240", "/sub-letting"]}
+{"q": "Can the landlord charge me a deposit for the keys?", "targets": ["sec.156", "sec.157", "sec.158"]}
+{"q": "I paid a holding deposit, do I get it back if I don't take the place?", "targets": ["sec.159", "sec.160", "sec.161"]}
+{"q": "How much rent in advance can the landlord ask for?", "targets": ["sec.87", "sec.57AA", "/rent-payments"]}
+{"q": "Do I get a receipt when I pay my rent?", "targets": ["sec.88", "/rent-payments"]}
+{"q": "What are the minimum housing standards for a rental?", "targets": ["sec.17A", "/minimum-housing-standards"]}
+{"q": "Who has to check and replace the smoke alarms?", "targets": ["/smoke-alarms"]}
+{"q": "How often can the landlord do a routine inspection?", "targets": ["sec.193", "sec.195", "/routine-inspections"]}
+{"q": "Can I put picture hooks in the walls?", "targets": ["sec.207", "sec.208", "sec.209", "sec.209A", "/fixtures-and-structural-changes"]}
+{"q": "Can I install a security camera at my rental?", "targets": ["sec.209B", "sec.208", "/fixtures-and-structural-changes", "/locks-and-security"]}
+{"q": "Can I change the locks?", "targets": ["sec.210", "sec.211", "sec.212", "/locks-and-security"]}
+{"q": "What happens if the tenant leaves and never comes back?", "targets": ["sec.355", "sec.356", "/abandoned-property-and-goods"]}
+{"q": "Can I end my lease because of domestic violence?", "targets": ["sec.308A", "sec.308B", "/domestic-violence-in-a-rental-property"]}
+{"q": "What happens to the lease if the only tenant dies?", "targets": ["sec.324A", "/death-of-a-tenant-or-lessor"]}
+{"q": "The house was flooded and we can't live there, what happens to the lease?", "targets": ["sec.284", "/property-becomes-unliveable"]}
+{"q": "Can my landlord end my lease without a reason?", "targets": ["sec.291", "sec.290G", "/ending-a-tenancy-agreement"]}
+{"q": "Do I have to pay for electricity if the meter is shared with another unit?", "targets": ["sec.165", "/charging-for-utilities"]}
+{"q": "Can the landlord charge me for water if the taps aren't water efficient?", "targets": ["sec.166", "/water-charging"]}
+{"q": "How do I get my bond back when I move out?", "targets": ["sec.125", "sec.136", "/bond-refunds", "/rental-bond"]}
+{"q": "The property manager wants to keep part of my bond and I don't agree, what can I do?", "targets": ["sec.136", "sec.136A", "/understanding-a-notice-of-claim", "/rta-dispute-resolution-service"]}
+{"q": "What counts as fair wear and tear?", "targets": ["/fair-wear-and-tear", "sec.188"]}
+{"q": "Can the agent put me on a tenancy blacklist?", "targets": ["sec.457", "sec.459", "sec.458A", "sec.458B", "/tenancy-databases"]}
+{"q": "Do I have to clean the house before I move out?", "targets": ["sec.188", "/vacating-a-property", "/cleaning"]}
+{"q": "What information can an agent ask for on my rental application?", "targets": ["sec.57B", "sec.57C", "sec.57D", "/personal-information", "/application-process"]}
+{"q": "Can the agent use photos of my stuff to advertise the house for sale?", "targets": ["sec.203", "/photographs-of-the"]}
+{"q": "Can the agent hold an open house while I'm still living there?", "targets": ["sec.204", "/open-houses-and-viewings"]}
+{"q": "Who has to look after the lawns and gardens?", "targets": ["/lawns-gardens-and-trees", "sec.188"]}
+{"q": "There's mould in the bathroom, who has to fix it?", "targets": ["/mould", "sec.185"]}
+{"q": "Who pays to replace the light bulbs?", "targets": ["/light-bulbs"]}
+{"q": "I can't afford the rent anymore, can I get out of the lease?", "targets": ["sec.310", "/excessive-hardship"]}
+{"q": "What should I watch out for to avoid a rental scam?", "targets": ["/rental-scams"]}

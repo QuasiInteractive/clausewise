@@ -16,7 +16,41 @@ def main() -> None:
     ask.add_argument("question")
     check = sub.add_parser("check", help="check a lease PDF clause by clause")
     check.add_argument("pdf")
+    sub.add_parser("snapshot-export", help="write the ingested corpus to data/snapshot")
+    sub.add_parser("snapshot-load", help="load data/snapshot into the database (used by CI)")
+    ev = sub.add_parser("eval-search", help="score retrieval on eval/search_golden.jsonl")
+    ev.add_argument("--min-recall", type=float, default=0.0, help="exit 1 below this recall@5")
     args = parser.parse_args()
+
+    if args.command == "snapshot-export":
+        from clausewise.snapshot import export_snapshot
+
+        print(f"exported {export_snapshot()} chunks")
+
+    if args.command == "snapshot-load":
+        from clausewise.snapshot import load_snapshot
+
+        print(f"loaded {load_snapshot()} chunks")
+
+    if args.command == "eval-search":
+        import sys
+
+        from clausewise.evals import first_match_rank, load_cases, score
+        from clausewise.retrieve import search as run_search
+        from clausewise.store import connect
+
+        cases = load_cases()
+        with connect() as conn:
+            ranks = [first_match_rank(run_search(conn, c.q, k=5), c.targets) for c in cases]
+        s = score(ranks, 5)
+        for c, r in zip(cases, ranks, strict=True):
+            if r is None:
+                print(f"  miss: {c.q}")
+        print(f"{len(cases)} questions · recall@5 {s['recall@5']:.2f} · recall@1 "
+              f"{s['recall@1']:.2f} · MRR {s['mrr']:.2f}")
+        if s["recall@5"] < args.min_recall:
+            print(f"FAIL: recall@5 below {args.min_recall}")
+            sys.exit(1)
 
     if args.command == "check":
         from pathlib import Path
