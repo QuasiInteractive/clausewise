@@ -6,7 +6,7 @@ Rooming accommodation, moveable dwellings and employment contracts come later.
 ## Milestones
 
 - [x] **0. Setup**: uv project, Postgres + pgvector in Docker, config, chunker with tests.
-- [ ] **1. Corpus**: fetch the RTRA Act 2008 (current reprint) and the RTA renting guidance
+- [x] **1. Corpus**: fetch the RTRA Act 2008 (current reprint) and the RTA renting guidance
       pages. Clean to markdown, chunk by section, store with source URL + section + fetch date.
       Check each source's licence and robots.txt first and record it in `docs/SOURCES.md`.
       - [x] RTRA Act, in force 2026-08-17: 769 chunks, every one with a `sec.N` deep link
@@ -26,7 +26,6 @@ Rooming accommodation, moveable dwellings and employment contracts come later.
 - [~] **6. Web**: site runs locally (FastAPI + one page). Still to do: deploy, demo video,
       LinkedIn post. Open misses in the answer key: leaking tap, retaliation, abandonment,
       hardship.
-- [ ] **6b.**: FastAPI endpoints + a small upload page. Deploy. Demo video. LinkedIn post.
 
 ## Rules for this repo
 
